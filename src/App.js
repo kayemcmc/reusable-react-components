@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Toggle from './ToggleRPC';
+import Portal from './Portal';
+import Modal from './Modal';
 
 class App extends Component {
   render() {
@@ -11,14 +13,20 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <Toggle> 
-        {({on, handleToggle}) => (
-          <Fragment>
-          {on && <h1>Show Me</h1>}
-          <button onClick={handleToggle}>Show/Hide</button>
-          </Fragment>
-        )}
+          <Toggle>     
+              {({on, handleToggle}) => (
+                <Fragment> 
+                  <button onClick={handleToggle}>Login</button>
+                  <Modal on={on} handleToggle={handleToggle}>
+                    <h1>Still in modal</h1>
+                  </Modal>
+                </Fragment>
+              )}  
         </Toggle>
+
+        <Portal>
+        <h1>Hi Im in a portal</h1>
+        </Portal>
       </div>
     );
   }
